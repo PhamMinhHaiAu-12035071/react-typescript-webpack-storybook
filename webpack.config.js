@@ -1,28 +1,33 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 module.exports = {
-  devtool: "source-map",
-  entry: "./src/index.tsx",
-  target: "web",
-  mode: "development",
+  devtool: 'source-map',
+  entry: './src/index.tsx',
+  target: 'web',
+  mode: 'development',
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
   },
   resolve: {
-    extensions: [".js", ".jsx", ".json", ".ts", ".tsx", "scss"],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', 'scss'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      Components: path.resolve(__dirname, 'src/components'),
+    },
   },
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        loader: "awesome-typescript-loader",
+        loader: 'awesome-typescript-loader',
       },
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
-        loader: "source-map-loader",
+        loader: 'source-map-loader',
       },
       {
         test: /\.(s*)css$/,
@@ -32,18 +37,18 @@ module.exports = {
             loader: 'css-loader',
           },
           'sass-loader',
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "src", "index.html"),
+      template: path.resolve(__dirname, 'src', 'index.html'),
     }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'build'),
     compress: true,
-    port: 8080
-  }
-};
+    port: 8080,
+  },
+}

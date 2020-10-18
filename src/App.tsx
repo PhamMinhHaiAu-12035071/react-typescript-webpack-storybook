@@ -1,6 +1,11 @@
 import * as React from 'react'
+import Book from '@/components/Book'
 
 const App = () => {
-  return <h1 className="text-danger">Hello World</h1>
+  return (
+    <div className="d-flex justify-content-center align-items-center">
+      <Book />
+    </div>
+  )
 }
 export default App
